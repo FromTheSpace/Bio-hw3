@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Amino Acids Sequence Logo Visualization</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <div class="header">
+    <h4 class="logo">Amino Acids Sequence Logos Visualization</h4>
+  </div>
+
+  <div class="container">
+    <div class="input-field">
+      <label for="input_seq">Input field:</label>
+      <hr>
+      <textarea rows="4" cols="50" id="input_seq" placeholder="Enter sequences here (one per line)"></textarea>
+      <p class="input-rule">* Input is a list of same length sequences separated by new lines</p>
+      <p class="input-rule">* Maximum sequence length: 16</p>
+      <p class="input-rule">* Maximum number of sequences: 16</p>
+      <div class="upload-btn-wrapper">
+        <button class="btn" onclick="document.getElementById('file-input').click()">Upload Sequence File</button>
+        <input type="file" id="file-input" accept=".txt">
+      </div>
+    </div>
+
+    <div class="output">
+      <button onclick="generateLogo()">Generate</button>
+      <button onclick="clearCanvas()">Clear Canvas</button> <!-- Add the button -->
+      <button onclick="addExample()">Input Example</button>
+      <hr>
+      <div id="download-s" style="display: none;">
+        <button onclick="download('jpg')">Download JPG</button>
+        <button onclick="download('png')">Download PNG</button>
+        <button onclick="download('svg')">Download SVG</button>
+      </div>
+    </div>
+    
+    <div class="spacer"></div>
+    <div id="see"></div>
+    <canvas id="bio" width="1000" height="300"></canvas>
+    <canvas id="letter" width="370" height="410" style="display: none;"></canvas>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
