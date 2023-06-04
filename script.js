@@ -13,14 +13,29 @@ fileInput.addEventListener('change', function(event) {
     var lines = c.split('\n');
     var test_length = lines[0].length;
 
+    var isValid = true; // Variable to track validation status
+    
+    if (lines.length > 16) {
+      alert("Maximum number of sequences exceeded. Please enter up to 16 sequences.");
+      isValid = false;
+    }
+    
     lines.forEach(function(line) {
       if (test_length !== line.length && (line !== '' && line.length !== test_length - 1)) {
         alert("All sequences must have the same length!");
+        isValid = false;
+      }
+      if (line.length > 16) {
+        alert("Maximum sequence length exceeded. Please enter sequences of up to 16 characters.");
+        isValid = false;
       }
     });
 
-    c = c.replace(/\n/g, ',').replace(/ /g, '').replace(/&emsp;/g, '').replace(/\t/g, '').replace(/	/g, '');
+    if (!isValid) {
+      return; // Exit the function if any alerts were triggered
+    }
 
+    c = c.replace(/\n/g, ',').replace(/ /g, '').replace(/&emsp;/g, '').replace(/\t/g, '').replace(/	/g, '');
     c = c.replace(/,,/g, ',');
 
     var tmp = matrix(c);
@@ -30,7 +45,7 @@ fileInput.addEventListener('change', function(event) {
   reader.readAsText(file);
 });
 
-function addExample() {
+function inputExample() {
   var exampleSequence = `GDLGAGKTT
 GDLGAGKTT
 GPLGAGKTS
